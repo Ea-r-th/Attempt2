@@ -8,11 +8,12 @@ using vec3 = glm::vec3;
 
 class Entity {
 
-private:
+protected:
 
 	RawModel model;
 	vec3 position;
 	vec3 rotation;
+	vec3 direction = vec3(0.0f,0.0f,-1.0f);
 	
 public: 
 

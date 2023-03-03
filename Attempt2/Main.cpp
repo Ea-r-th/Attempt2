@@ -11,6 +11,7 @@
 #include "RawModel.h"
 #include "StaticShader.h"
 #include "Renderer.h"
+#include "Player.h"
 
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 
@@ -65,8 +66,6 @@ GLuint indices[] =
 	23,21,22
 };
 
-Camera camera(0.0f, 0.0f, 2.0f, 0.0f, 0.0f);
-
 int main() {
 
 	Engine::initDisplay();
@@ -83,6 +82,8 @@ int main() {
 
 	double prevTime = glfwGetTime();
 
+
+
 	RawModel model = Engine::loadToVao(vertices, sizeof(vertices), indices, sizeof(indices));
 	Entity entity(model, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f);
 
@@ -90,6 +91,8 @@ int main() {
 
 	mat4 projectionMatrix = createProjectionMatrix(70.0f, Engine::DISPLAY_WIDTH, Engine::DISPLAY_HEIGHT, 0.0f, 500.0f);
 	Renderer renderer(shader, projectionMatrix);
+
+	Player player(model, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f); //The model is not rendered, I am disregarding the model part for now
 
 	shader.Start();
 
@@ -100,7 +103,7 @@ int main() {
 
 		Engine::setViewport(window);
 
-		shader.loadViewMatrix(camera);
+		shader.loadViewMatrix(player.camera);
 
 		double currentTime = glfwGetTime();
 		if (currentTime - prevTime >= 1 / Engine::MAX_FPS)
@@ -112,7 +115,7 @@ int main() {
 			
 			//\\Time based calculations go here
 
-		camera.getInput(window);
+			player.move(window);
 
 		renderer.render(entity);
 

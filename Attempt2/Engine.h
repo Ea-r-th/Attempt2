@@ -36,4 +36,10 @@ namespace Engine{
 	void cleanUp();
 
 	//\\Loader functions
+
+	//Math Functions --> I'd like to move this to a math/tools dedicated namespace eventually, but I don't really feeeeel like it right now
+
+	vec3 calcDirection(float x, float y);
+
+	//\\Math functions
 }

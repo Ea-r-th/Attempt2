@@ -18,11 +18,15 @@ public:
 
 	Camera(float x, float y, float z, float pitch, float yaw);
 
-	void move(GLFWwindow* window, int action, int key);
 	void rotate();
-	void getInput(GLFWwindow* window);
 
 	vec3 getPosition();
 	vec3 getRotation();
+	vec3 getDirection();
+
+	void setPosition(vec3 newPosition);
+
+	vec3 direction;
+
 };
 

@@ -171,8 +171,10 @@
     <ClCompile Include="glad.c" />
     <ClCompile Include="Loader.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MathTools.cpp" />
     <ClCompile Include="Matrices.cpp" />
     <ClCompile Include="ModelTexture.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="RawModel.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
@@ -185,6 +187,7 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Matrices.h" />
     <ClInclude Include="ModelTexture.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="RawModel.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="ShaderProgram.h" />
