@@ -43,10 +43,10 @@ void Player::move(GLFWwindow* window) {
 	if (glfwGetKey(window, GLFW_KEY_RIGHT)) {
 		rotation.x -= rotationSpeed;
 	}
-	if (glfwGetKey(window, GLFW_KEY_UP)) {
+	if (glfwGetKey(window, GLFW_KEY_UP) && rotation.y < 89.5) {
 		rotation.y += rotationSpeed;
 	}
-	if (glfwGetKey(window, GLFW_KEY_DOWN)) {
+	if (glfwGetKey(window, GLFW_KEY_DOWN) && rotation.y > -89.5) {
 		rotation.y -= rotationSpeed;
 	}
 	if (glfwGetKey(window, GLFW_KEY_SPACE)) {
@@ -56,7 +56,7 @@ void Player::move(GLFWwindow* window) {
 		position.y -= ySpeed;
 	}
 
-	std::cout << direction.x << " : " << direction.z << std::endl;
+
 
 	direction = Engine::calcDirection(glm::radians(rotation.x), glm::radians(rotation.y));
 	camera.direction = direction; //Is this the most efficient way to do this? I'd like to have both cameras be the same but can't use inheritence.

@@ -92,7 +92,7 @@ int main() {
 	mat4 projectionMatrix = createProjectionMatrix(70.0f, Engine::DISPLAY_WIDTH, Engine::DISPLAY_HEIGHT, 0.0f, 500.0f);
 	Renderer renderer(shader, projectionMatrix);
 
-	Player player(model, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f); //The model is not rendered, I am disregarding the model part for now
+	Player player(model, 0.0f, 0.0f, 2.0f, 0.0f, 0.0f); //The model is not rendered, I am disregarding the model part for now
 
 	shader.Start();
 
