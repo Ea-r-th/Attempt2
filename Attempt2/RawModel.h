@@ -4,16 +4,17 @@
 
 class RawModel {
 
-public:
-
-	RawModel(GLuint ID = 0, GLuint vertexCount = 0);
-
-	GLuint getVaoID();
-	GLuint getVertexCount();
-
 private:
 
 	GLuint vaoID;
 	GLuint vertexCount;
+
+public:
+
+	RawModel(GLuint ID = 0, GLuint vertexCount = 0)
+		: vaoID(ID), vertexCount(vertexCount) {};
+
+	GLuint getVaoID() const { return vaoID; }
+	GLuint getVertexCount() const { return vertexCount; }
 
 };

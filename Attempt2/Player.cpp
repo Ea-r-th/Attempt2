@@ -7,7 +7,7 @@ float rotationSpeed = 0.5f;
 float ySpeed = 0.04f;
 
 //For child reference: Child class can take in more params, but must all be defined in header. Pass these params into parent constructor
-Player::Player(RawModel model, float posX, float posY, float posZ, float pitch, float yaw)
+Player::Player(TexturedModel  model, float posX, float posY, float posZ, float pitch, float yaw)
 	: Entity(model, posX, posY, posZ, pitch, yaw),
 	camera(posX, posY, posZ, pitch, yaw)
 {

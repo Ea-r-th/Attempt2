@@ -66,6 +66,34 @@ GLuint indices[] =
 	23,21,22
 };
 
+GLfloat textureCoords[] =
+{
+	0,0,
+	0,1,
+	1,1,
+	1,0,
+	0,0,
+	0,1,
+	1,1,
+	1,0,
+	0,0,
+	0,1,
+	1,1,
+	1,0,
+	0,0,
+	0,1,
+	1,1,
+	1,0,
+	0,0,
+	0,1,
+	1,1,
+	1,0,
+	0,0,
+	0,1,
+	1,1,
+	1,0
+};
+
 int main() {
 
 	Engine::initDisplay();
@@ -84,7 +112,9 @@ int main() {
 
 
 
-	RawModel model = Engine::loadToVao(vertices, sizeof(vertices), indices, sizeof(indices));
+	RawModel rawModel = Engine::loadToVao(vertices, sizeof(vertices), textureCoords, sizeof(textureCoords), indices, sizeof(indices));
+	ModelTexture texture = Engine::createModelTexture("image.png");
+	TexturedModel model = TexturedModel(rawModel, texture);
 	Entity entity(model, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f);
 
 	StaticShader shader;

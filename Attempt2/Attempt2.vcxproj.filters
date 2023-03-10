@@ -78,9 +78,6 @@
     <ClCompile Include="stb_image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ModelTexture.cpp">
-      <Filter>Source Files\textures</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Source Files\player</Filter>
     </ClCompile>
@@ -118,6 +115,9 @@
     </ClInclude>
     <ClInclude Include="Engine.h">
       <Filter>Source Files\main</Filter>
+    </ClInclude>
+    <ClInclude Include="TexturedModel.h">
+      <Filter>Source Files\models</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

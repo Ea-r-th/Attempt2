@@ -11,15 +11,50 @@ void bindEBO(GLuint* indices, GLsizeiptr eboSize);
 //Creates lists of vaos and vbos to be deleted
 std::vector<GLuint> vaoList;
 std::vector<GLuint> vboList;
+std::vector<GLuint> texList;
+
+//Creates a texture
+ModelTexture Engine::createModelTexture(const char* filePath) {
+
+	int width, height, colorChannelCount;
+	GLuint ID;
+
+	unsigned char* bytes = stbi_load(filePath, &width, &height, &colorChannelCount, 0);
+
+	glGenTextures(1, &ID);
+
+	texList.emplace_back(ID);
+
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, ID); //Bind texture to apply parameters
+
+	//These are just parameters for the texture, not important
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	//This is all hardcoded, may need to change later
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, colorChannelCount, GL_UNSIGNED_INT, bytes);
+	glGenerateMipmap(GL_TEXTURE_2D);
+
+	//Unbinds image and frees data
+	stbi_image_free(bytes);
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+	return ModelTexture(ID);  
+}
 
 //Creates a vao, then binds vbos and an ebo to that vao, then returns a rawmodel.
 
-RawModel Engine::loadToVao(GLfloat* positions, GLsizeiptr posSize, GLuint* indices, GLsizeiptr eboSize) {
+RawModel Engine::loadToVao(GLfloat* positions, GLsizeiptr posSize, GLfloat* textureCoords, GLsizeiptr texCoordsSize, GLuint* indices, GLsizeiptr eboSize) {
 
 	GLuint ID = createVao();
 
 	bindEBO(indices, eboSize);
 	storeDataInAttribList(0, positions, posSize);
+	storeDataInAttribList(1, textureCoords, texCoordsSize);
 
 	unbindVao();
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
@@ -40,7 +75,7 @@ GLuint createVao() {
 	return ID;
 }
 
-//Binds 0
+//Binds 0 (This isn't needed and can just be hardcoded)
 void unbindVao() {
 
 	glBindVertexArray(0);
@@ -84,5 +119,7 @@ void Engine::cleanUp() {
 		glDeleteVertexArrays(1, &vaoList[i]);
 	for (int i = 0; i < vaoList.size(); i++)
 		glDeleteBuffers(1, &vboList[i]);
+	for (int i = 0; i < texList.size(); i++)
+		glDeleteTextures(1, &texList[i]);
 
 }

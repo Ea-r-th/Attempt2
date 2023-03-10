@@ -3,6 +3,7 @@
 #define GLFW_INCLUDE_NONE
 #include "GLFW/glfw3.h"
 #include "RawModel.h"
+#include "ModelTexture.h"
 #include "ShaderProgram.h"
 #include <iostream>
 #include <vector>
@@ -31,7 +32,9 @@ namespace Engine{
 	
 	//Loader functions
 
-	RawModel loadToVao(GLfloat* positions, GLsizeiptr posSize, GLuint* indices, GLsizeiptr eboSize);
+	RawModel loadToVao(GLfloat* positions, GLsizeiptr posSize, GLfloat* textureCoords, GLsizeiptr texCoordsSize, GLuint* indices, GLsizeiptr eboSize);
+
+	ModelTexture createModelTexture(const char* filePath);
 
 	void cleanUp();
 

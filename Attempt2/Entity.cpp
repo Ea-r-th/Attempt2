@@ -1,6 +1,6 @@
 #include "Entity.h"
 
-Entity::Entity(RawModel model, float posX, float posY, float posZ, float pitch, float yaw)
+Entity::Entity(TexturedModel model, float posX, float posY, float posZ, float pitch, float yaw)
 	: position(vec3(posX, posY, posZ)), rotation(vec3(pitch, yaw, 0)), model(model), direction(vec3(position.x,position.y,position.z -1.0)) {
 
 }
@@ -33,8 +33,4 @@ float Entity::getRotX(){
 
 float Entity::getRotY(){
 	return rotation.y;
-}
-
-RawModel Entity::getRawModel() {
-	return model;
 }

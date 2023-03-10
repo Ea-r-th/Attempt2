@@ -10,6 +10,8 @@ void Renderer::render(Entity entity) {
 
 	glBindVertexArray(model.getVaoID());
 	glEnableVertexAttribArray(0);
+	glActiveTexture(GL_TEXTURE0); //Because all of the GL_TEXTURE values are sequential, we can simply add an extra integer to increment it
+	glBindTexture(GL_TEXTURE_2D, entity.getTextureID());
 
 	shader.loadProjectionMatrix(projectionMatrix);
 
@@ -18,6 +20,7 @@ void Renderer::render(Entity entity) {
 
 	glDrawElements(GL_TRIANGLES, model.getVertexCount(), GL_UNSIGNED_INT, NULL);
 
+	glBindTexture(GL_TEXTURE_2D, 0);
 	glDisableVertexAttribArray(0);
 	glBindVertexArray(0);
 }

@@ -14,7 +14,7 @@ class Player : public Entity {
 
 public:
 
-	Player(RawModel model, float posX, float posY, float posZ, float pitch, float yaw);
+	Player(TexturedModel model, float posX, float posY, float posZ, float pitch, float yaw);
 	void move(GLFWwindow* window);
 
 	Camera camera;
