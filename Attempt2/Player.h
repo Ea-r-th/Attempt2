@@ -6,6 +6,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <GLFW/glfw3.h>
+#include "TexturedModel.h"
 #include "Camera.h"
 
 using vec3 = glm::vec3;
